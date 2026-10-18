@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Chat — Chat with your PDF</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <h1 class="logo">✦ <span>RAG Chat</span></h1>
+                <p class="tagline">Chat with your PDF using AI</p>
+            </div>
+            <div class="header-right">
+                <span class="status-badge">
+                    <span class="status-dot"></span>
+                    Local AI
+                </span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Sidebar: Upload -->
+            <aside class="sidebar">
+                <div class="upload-card">
+                    <div class="upload-icon">📄</div>
+                    <h2>Upload your PDF</h2>
+                    <p class="upload-desc">Upload a document and ask questions about its content.</p>
+
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="fileInput" accept=".pdf" hidden>
+                        <button class="btn btn-primary" id="choosePdfBtn">Choose PDF</button>
+                        <p class="file-name" id="fileName"></p>
+                    </div>
+
+                    <div class="upload-status" id="uploadStatus" style="display: none;">
+                        <div class="status-processing" id="statusProcessing">
+                            <div class="spinner"></div>
+                            <span>Processing PDF...</span>
+                        </div>
+                        <div class="status-success" id="statusSuccess" style="display: none;">
+                            <div class="success-icon">✓</div>
+                            <span class="success-text">PDF ready</span>
+                            <p class="success-details" id="successDetails"></p>
+                        </div>
+                        <div class="status-error" id="statusError" style="display: none;">
+                            <span class="error-text" id="errorText"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card" id="statsCard" style="display: none;">
+                    <h3>Document Stats</h3>
+                    <div class="stat-row">
+                        <span class="stat-label">Total chunks stored</span>
+                        <span class="stat-value" id="totalChunks">0</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Area -->
+            <section class="chat-section">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Empty state -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">🤖</div>
+                        <h2>Ask your PDF anything</h2>
+                        <p>Upload a PDF above and start asking questions.</p>
+                    </div>
+                </div>
+
+                <!-- Question Input -->
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <input
+                            type="text"
+                            id="questionInput"
+                            placeholder="Ask a question about your PDF..."
+                            autocomplete="off"
+                        >
+                        <button class="btn btn-send" id="askBtn" disabled>
+                            <span id="askBtnText">Ask</span>
+                            <span id="askBtnLoading" style="display: none;">
+                                <span class="btn-spinner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
